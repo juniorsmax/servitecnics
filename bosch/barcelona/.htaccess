@@ -1,0 +1,16 @@
+Options -MultiViews
+RewriteEngine On
+RewriteBase /bosch/barcelona/
+RewriteRule ^index\.html$ - [L]
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule . /bosch/barcelona/index.html [L]
+```
+
+4. Guarda el archivo
+
+---
+
+**Paso 4 —** Prueba de nuevo pegando la URL directa:
+```
+www.servitecnics.com/bosch/barcelona/lavadoras
