@@ -18,6 +18,31 @@
     </script>
     <!-- End Google Ads -->
 
+    <!-- Google Ads: Conversión por envío de formulario -->
+    <!-- Intercepta llamadas exitosas a EmailJS en todas las páginas de categoría -->
+    <!-- (lavadoras, secadoras, hornos, lavavajillas, etc.) -->
+    <script>
+      (function() {
+        var _origFetch = window.fetch;
+        window.fetch = function() {
+          var args = Array.prototype.slice.call(arguments);
+          var url = args[0] instanceof Request ? args[0].url : String(args[0]);
+          var promise = _origFetch.apply(this, args);
+          if (url.indexOf('emailjs.com') !== -1) {
+            promise.then(function(response) {
+              if (response.ok && typeof gtag === 'function') {
+                gtag('event', 'conversion', {
+                  'send_to': 'AW-18125424540/f9zMCPmvo6QcEJyP8MJD'
+                });
+              }
+            }).catch(function() {});
+          }
+          return promise;
+        };
+      })();
+    </script>
+    <!-- End Google Ads Conversión formulario -->
+
     <!-- Google Tag Manager -->
     <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
     new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
